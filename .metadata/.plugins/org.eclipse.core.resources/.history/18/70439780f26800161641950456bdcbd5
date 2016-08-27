@@ -1,0 +1,15 @@
+
+import java.util.List;
+
+import javax.ejb.Local;
+
+import student.onlineretailer.jpa.Product;
+
+@Local
+public interface OnlineRetailerBeanLocal {
+	public void addCategoriesAndProducts(String ProductName, double UnitPrice, int UnitsInStock, String categoryName);
+	public List<Product> getAllProducts();
+	public List<Product> getProductsByName(String name);
+	public List<Product> getProductsInCategory(String catName);
+	public void increaseAllPrices(double priceRise);
+}

@@ -1,0 +1,9 @@
+package portfolio.managementsystem.ejb;
+
+import javax.ejb.Local;
+
+@Local
+public interface StockBeanLocal {
+	public String getName();
+	public void init(String name);
+}

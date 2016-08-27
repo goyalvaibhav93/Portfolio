@@ -1,0 +1,13 @@
+import javax.ws.rs.Path;
+
+@Path("/product")
+
+public class ProductResource {
+	
+	@GET
+	@Produces("text/plain")
+	public String getText(){
+		return "ProductName";
+	}
+	
+}

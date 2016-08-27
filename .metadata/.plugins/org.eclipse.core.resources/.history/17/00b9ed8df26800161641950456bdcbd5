@@ -1,0 +1,11 @@
+
+import java.util.List;
+
+import javax.ejb.Local;
+
+import student.onlineretailer.jpa.Product;
+
+@Local
+public interface OnlineRetailerBeanLocal {
+	
+}

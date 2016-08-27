@@ -1,0 +1,61 @@
+package student.onlineretailer.jpa;
+
+import java.io.Serializable;
+import java.lang.String;
+import java.util.List;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Category
+ *
+ */
+@Entity
+@Table(name="Categories")
+
+public class Category implements Serializable {
+
+	   
+	@Id
+	private int CategoryID;
+	private String CategoryName;
+	private String Description;
+	private List<Product> products;
+
+	private static final long serialVersionUID = 1L;
+
+	
+	@OneToMany(mappedBy = "category")
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	
+	public Category() {
+		super();
+	}   
+	public int getCategoryID() {
+		return this.CategoryID;
+	}
+
+	public void setCategoryID(int CategoryID) {
+		this.CategoryID = CategoryID;
+	}   
+	public String getCategoryName() {
+		return this.CategoryName;
+	}
+
+	public void setCategoryName(String CategoryName) {
+		this.CategoryName = CategoryName;
+	}   
+	public String getDescription() {
+		return this.Description;
+	}
+
+	public void setDescription(String Description) {
+		this.Description = Description;
+	}
+   
+}

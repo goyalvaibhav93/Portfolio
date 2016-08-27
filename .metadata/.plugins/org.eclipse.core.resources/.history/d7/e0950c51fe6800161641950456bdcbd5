@@ -1,0 +1,88 @@
+package student.onlineretailer.ejb;
+
+import java.util.Arrays;
+
+import java.util.List;
+
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import student.onlineretailer.Category;
+import student.onlineretailer.Product;
+
+
+/**
+ * Session Bean implementation class OnlineRetailerBean
+ */
+@Stateless
+@Local(OnlineRetailerBeanLocal.class)
+@Remote(OnlineRetailerBeanRemote.class)
+public class OnlineRetailerBean implements OnlineRetailerBeanRemote, OnlineRetailerBeanLocal {
+
+	@PersistenceContext(unitName = "StudentOnlineRetailerJPA-PU")
+	private EntityManager em;
+	
+    /**
+     * Default constructor. 
+     */
+    public OnlineRetailerBean() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public void addCategoriesAndProducts(String ProductName, double UnitPrice, int UnitsInStock, String categoryName){
+    	Product product = new Product();
+    	product.setProductName(ProductName);
+    	product.setUnitPrice(UnitPrice);
+    	product.setUnitsInStock(UnitsInStock);
+    	
+    	Category category = new Category();
+    	category.setCategoryName(categoryName);
+    	category.setProducts(Arrays.asList(product));
+    	
+    	product.setCategory(category);
+    	
+    	em.persist(product);
+    	em.persist(category);
+    	
+    }
+    
+    public List<Product> getAllProducts(){
+    	TypedQuery<Product> query = em.createQuery("SELECT p FROM Product AS p", Product.class);
+    	List<Product> products = query.getResultList(); 
+    	return products;
+    }
+    
+    public List<Product> getProductsByName(String name){
+    	String sql = "SELECT p FROM Product AS p WHERE p.productName LIKE '%" + name + "%'";
+    	TypedQuery<Product> query = em.createQuery(sql, Product.class);
+    	List<Product> products = query.getResultList();
+    	return products;
+    }
+    
+    public List<Product> getProductsInCategory(String catName){
+    	int catid=0;
+    	TypedQuery<Category> query1 = em.createQuery("SELECT CategoryID FROM Categories WHERE CategoryName LIKE '" + catName + "'", Category.class);
+    	try{
+    		catid = query1.getFirstResult();
+    	} catch (EntityNotFoundException ex){
+    		System.out.println("Category not found");
+    		ex.printStackTrace();
+    	} catch (NonUniqueResultException ex){
+    		System.out.println("Some error occurred");
+    		ex.printStackTrace();
+    	}
+    	TypedQuery<Product> query2 = em.createQuery("SELECT ProductName,CategoryID FROM Products WHERE ProductName LIKE '" + catid + "'", Product.class);
+    	return query2.getResultList();
+    }
+    
+    public void increaseAllPrices(double priceRise){
+    	TypedQuery<Product> query = em.createQuery("UPDATE Products SET UnitPrice = UnitPrice+priceRise", Product.class);
+    }
+
+}

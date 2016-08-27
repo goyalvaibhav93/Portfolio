@@ -1,0 +1,5 @@
+package portfolio.managementsystem.jpa;
+
+public class Stock {
+
+}

@@ -1,0 +1,43 @@
+package student.onlineretailer.ejb;
+
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import student.onlineretailer.jpa.Category;
+import student.onlineretailer.jpa.Product;
+
+/**
+ * Session Bean implementation class OnlineRetailerBean
+ */
+@Stateless
+@Local(OnlineRetailerBeanLocal.class)
+@Remote(OnlineRetailerBeanRemote.class)
+public class OnlineRetailerBean implements OnlineRetailerBeanRemote, OnlineRetailerBeanLocal {
+
+	@PersistenceContext(unitName = "StudentOnlineRetailerJPA")
+	private EntityManager em;
+	
+    /**
+     * Default constructor. 
+     */
+    public OnlineRetailerBean() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public void addCategoriesAndProducts(String ProductName, double UnitPrice, int UnitsInStock, String categoryName){
+    	Product product = new Product();
+    	product.setProductName(ProductName);
+    	product.setUnitPrice(UnitPrice);
+    	product.setUnitsInStock(UnitsInStock);
+    	
+    	Category category = new Category();
+    	category.setCategoryName(categoryName);
+    	
+    	product.setCategory(category);
+    	
+    }
+
+}

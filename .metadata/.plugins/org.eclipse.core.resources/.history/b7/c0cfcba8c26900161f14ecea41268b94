@@ -1,0 +1,47 @@
+import java.util.List;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+import student.onlineretailer.Product;
+import student.onlineretailer.ejb.OnlineRetailerBeanLocal;
+
+@Path("/product")
+
+public class ProductResource {
+	
+	private OnlineRetailerBeanLocal bean;
+	
+	@QueryParam("filter")
+	@DefaultValue("")
+	private String filter;
+	
+	public ProductResource() throws NamingException{
+		try{
+			InitialContext context = new InitialContext();
+			bean = (OnlineRetailerBeanLocal) context.lookup("java:app/StudentOnlineRetailerEJB/OnlineRetailerBean!student.onlineretailer.ejb.OnlineRetailerBeanLocal");
+		} catch (NamingException ex){
+			ex.printStackTrace();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	public List<Product> getProductsByName(String filter){
+		return bean.getProductsByName(filter);
+	}
+	
+	
+	
+	@GET
+	@Produces("text/plain")
+	public String getText(){
+		return "Hello World";
+	}
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;student.onlineretailer.jpa&apos; to &apos;build&apos;&#x0D;&#x0A;- Original project: &apos;StudentOnlineRetailerJPA&apos;&#x0D;&#x0A;- Destination element: &apos;build&apos;&#x0D;&#x0A;- Original element: &apos;StudentOnlineRetailerJPA/src/student.onlineretailer.jpa&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" element1="/src&lt;student.onlineretailer.jpa" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1471929326064" target="/StudentOnlineRetailerEJB/build" version="1.0"/>
+</session>

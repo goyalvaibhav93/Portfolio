@@ -1,0 +1,18 @@
+package portfolio.managementsystem.ejb;
+
+import javax.ejb.Stateful;
+
+/**
+ * Session Bean implementation class StockBean
+ */
+@Stateful
+public class StockBean implements StockBeanRemote, StockBeanLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public StockBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+}
