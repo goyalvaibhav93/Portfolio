@@ -25,7 +25,7 @@ public class Main {
 		
 		bean.init("Vaibhav");
 		for (Stock s : bean.getAllStocks()){
-			System.out.println(s.getName());
+			System.out.println(s.getTicker());
 		}
 		
 	}

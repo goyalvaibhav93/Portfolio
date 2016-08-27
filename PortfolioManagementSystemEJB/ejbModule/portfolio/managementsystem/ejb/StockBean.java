@@ -44,7 +44,7 @@ public class StockBean implements StockBeanRemote, StockBeanLocal {
     @Override
     public List<Stock> getAllStocks(){
 //    	String sql = "SELECT s FROM Stock AS s";
-    	String sql = "SELECT p FROM Stock AS p WHERE p.name LIKE '%a%'";
+    	String sql = "SELECT p FROM Stock AS p";
     	TypedQuery<Stock> query = em.createQuery(sql,Stock.class);
     	return query.getResultList();
     }

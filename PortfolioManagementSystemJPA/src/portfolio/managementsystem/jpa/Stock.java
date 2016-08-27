@@ -9,27 +9,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="stocks")
+@Table(name="shares")
 public class Stock implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	private int id;
-	private String name;
+	private int ShareId;
+	private String Ticker;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
-		return id;
+	public int getShareId() {
+		return ShareId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setShareId(int id) {
+		this.ShareId = id;
 	}
-	public String getName() {
-		return name;
+	public String getTicker() {
+		return Ticker;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTicker(String name) {
+		this.Ticker = name;
 	}
 	
 }
