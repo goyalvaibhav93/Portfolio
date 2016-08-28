@@ -32,8 +32,10 @@ public class Main {
 		
 		InvestmentBeanRemote bean = (InvestmentBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/InvestmentBean!portfolio.managementsystem.ejb.InvestmentBeanRemote");
 		
+		System.out.println(bean.getAllInvestments());
+		
 		for (Investment i : bean.getAllInvestments()){
-			System.out.println(i.getUnits());
+			System.out.println(i.getInstrument().getTicker());
 		}
 		
 	}
