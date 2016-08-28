@@ -4,7 +4,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import portfolio.managementsystem.ejb.InvestmentBeanRemote;
 import portfolio.managementsystem.ejb.StockBeanRemote;
+import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.Stock;
 
 public class Main {
@@ -21,11 +23,17 @@ public class Main {
 		// Create the JNDI InitialContext.
 		Context context = new InitialContext(prop);
 		
-		StockBeanRemote bean = (StockBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/StockBean!portfolio.managementsystem.ejb.StockBeanRemote");
+		/*StockBeanRemote bean = (StockBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/StockBean!portfolio.managementsystem.ejb.StockBeanRemote");
 		
 		bean.init("Vaibhav");
 		for (Stock s : bean.getAllStocks()){
 			System.out.println(s.getTicker());
+		}*/
+		
+		InvestmentBeanRemote bean = (InvestmentBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/InvestmentBean!portfolio.managementsystem.ejb.InvestmentBeanRemote");
+		
+		for (Investment i : bean.getAllInvestments()){
+			System.out.println(i.getUnits());
 		}
 		
 	}
