@@ -16,6 +16,7 @@ public class WebApplication  extends Application {
 	public WebApplication() throws NamingException{
 		singletons.add(new PerformanceSummary());
 		singletons.add(new InvestmentsREST());
+		singletons.add(new PostTest());
 	}
 	
 	@Override

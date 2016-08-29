@@ -2,6 +2,7 @@ package portfolio.managementsystem.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,10 +14,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+
+//import org.json.JSONObject;
+
 import portfolio.managementsystem.ejb.InvestmentBeanLocal;
 import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.Stock;
 import portfolio.managementsystem.response.InvestmentResponse;
+import portfolio.managementsystem.response.JSONParse;
 
 @Path("/investments/current")
 public class InvestmentsREST {
@@ -52,12 +57,13 @@ public class InvestmentsREST {
 			obj.setBuyPrice(i.getBuyPrice());
 			obj.setUnits(i.getUnits());
 			obj.setUsername(i.getUser().getUsername());
-			
 			response.add(obj);
-		}
-		
+		}	
 		return response;
 	}
+	
+	
+	
 	
 	
 }
