@@ -49,4 +49,11 @@ public class StockBean implements StockBeanRemote, StockBeanLocal {
     	return query.getResultList();
     }
 
+    /*@Override
+    public void addToDatabase(Stock content){
+    	
+    		em.persist(content);
+//    		em.getTransaction().commit();
+    	
+    }*/
 }

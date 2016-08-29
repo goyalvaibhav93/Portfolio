@@ -4,14 +4,16 @@ import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import portfolio.managementsystem.ejb.StockBeanLocal;
 import portfolio.managementsystem.jpa.Stock;
 
-@Path("/performanceSummary")
+@Path("/")
 public class PerformanceSummary {
 	private StockBeanLocal bean;
 	
@@ -25,10 +27,20 @@ public class PerformanceSummary {
 	}
 	
 	@GET
+	@Path("/performanceSummary")
 	@Produces("application/json")
 	public List<Stock> getAllStocks(){
 		return bean.getAllStocks();
 	}
+	
+	/*@POST
+	@Path("/performance")
+	@Consumes("application/x-www-form-urlencoded")
+	@Produces("application/json")
+	public void putAllStocks(Object content){
+		System.out.println( content.toString());
+		//bean.addToDatabase(content);
+	}*/
 	
 }
 
