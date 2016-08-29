@@ -34,9 +34,9 @@ public class Main {
 		
 		System.out.println(bean.getAllInvestments());
 		
-		for (Investment i : bean.getAllInvestments()){
+		/*for (Investment i : bean.getAllInvestments()){
 			System.out.println(i.getInstrument().getTicker());
-		}
+		}*/
 		
 	}
 

@@ -1,6 +1,9 @@
 package portfolio.managementsystem.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -11,9 +14,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import portfolio.managementsystem.ejb.InvestmentBeanLocal;
-import portfolio.managementsystem.ejb.StockBeanLocal;
 import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.Stock;
+import portfolio.managementsystem.response.InvestmentResponse;
 
 @Path("/investments/current")
 public class InvestmentsREST {
@@ -29,10 +32,31 @@ public class InvestmentsREST {
 		}
 	}
 	
+	/*@GET
+	@Produces("application/json")
+	public List<Investment> getAllInvestments(){
+		return bean.getAllInvestmentsTest();
+	}*/
+	
 	@GET
 	@Produces("application/json")
-	public List<Investment> getAllStocks(){
-		return bean.getAllInvestments();
+	public List<InvestmentResponse> getAllInvestments2(){
+		List<InvestmentResponse> response = new ArrayList<>();
+		for(Investment i : bean.getAllInvestmentsTest()){
+			
+			InvestmentResponse obj = new InvestmentResponse();
+			
+			obj.setInvestmentId(i.getInvestmentId());
+			obj.setTicker(i.getInstrument().getTicker());
+			obj.setBuyDate(i.getBuyDate());
+			obj.setBuyPrice(i.getBuyPrice());
+			obj.setUnits(i.getUnits());
+			obj.setUsername(i.getUser().getUsername());
+			
+			response.add(obj);
+		}
+		
+		return response;
 	}
 	
 	

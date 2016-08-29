@@ -31,8 +31,13 @@ public class Investment implements Serializable{
 	@JsonBackReference
 	private User user;
 	
+	private String ticker;
+	private String username;
+	
 	public Investment(){
 		super();
+//		this.ticker = instrument.getTicker();
+//		this.username = user.getUsername();
 	}
 	
 	@Id

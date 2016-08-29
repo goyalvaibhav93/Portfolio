@@ -33,14 +33,16 @@ public class PerformanceSummary {
 		return bean.getAllStocks();
 	}
 	
-	/*@POST
+	@POST
 	@Path("/performance")
-	@Consumes("application/x-www-form-urlencoded")
+	@Consumes("application/json")
 	@Produces("application/json")
 	public void putAllStocks(Object content){
 		System.out.println( content.toString());
 		//bean.addToDatabase(content);
-	}*/
+	}
+	
+	
 	
 }
 
