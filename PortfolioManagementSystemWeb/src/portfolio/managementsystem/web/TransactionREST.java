@@ -17,7 +17,7 @@ import portfolio.managementsystem.ejb.TransactionBeanLocal;
 import portfolio.managementsystem.jpa.Transaction;
 import portfolio.managementsystem.response.TransactionResponse;
 
-@Path("/sun32/transactions")
+@Path("/transactions")
 public class TransactionREST {
 	
 private TransactionBeanLocal bean;
@@ -53,18 +53,20 @@ private TransactionBeanLocal bean;
 	
 	@POST
 	@Consumes("application/json")
+	@Produces("application/json")
 	@Path("/new")
-	public void insertTransaction(TransactionResponse t) {
+	public String insertTransaction(TransactionResponse t) {
 		
 		String ticker = t.ticker;
 		int units = t.units;
 		double price = t.price;
 		Date d = Calendar.getInstance().getTime();
+		System.out.println(d.toString());
 		String username = "sun32";
 		int buySell = t.buySell;
 		System.out.println(ticker+ units + "" + price + ""+ buySell);
 		
-		bean.insertNewTransaction(buySell, ticker, units, price, d, username);
+		return bean.insertNewTransaction(buySell, ticker, units, price, d, username);
 		
 	} 
 	

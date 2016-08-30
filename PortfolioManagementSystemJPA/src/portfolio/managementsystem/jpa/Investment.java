@@ -1,7 +1,6 @@
 package portfolio.managementsystem.jpa;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +20,7 @@ public class Investment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int investmentId;
-	private Date buyDate;
-	private double buyPrice;
+	private double investmentCost;
 	private int units;
 	
 	@JsonBackReference
@@ -30,9 +28,6 @@ public class Investment implements Serializable{
 	
 	@JsonBackReference
 	private User user;
-	
-	private String ticker;
-	private String username;
 	
 	public Investment(){
 		super();
@@ -58,11 +53,7 @@ public class Investment implements Serializable{
 		this.stock = stock;
 	}
 
-	public Date getBuyDate() {
-		return buyDate;
-	}
-
-	@ManyToOne
+		@ManyToOne
 	@JoinColumn(name="users_username")
 	public User getUser() {
 		return user;
@@ -72,16 +63,12 @@ public class Investment implements Serializable{
 		this.user = user;
 	}
 	
-	public void setBuyDate(Date buyDate) {
-		this.buyDate = buyDate;
+	public double getinvestmentCost() {
+		return investmentCost;
 	}
 
-	public double getBuyPrice() {
-		return buyPrice;
-	}
-
-	public void setBuyPrice(double buyPrice) {
-		this.buyPrice = buyPrice;
+	public void setinvestmentCost(double investmentCost) {
+		this.investmentCost = investmentCost;
 	}
 
 	public int getUnits() {

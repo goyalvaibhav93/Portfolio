@@ -1,14 +1,13 @@
 package portfolio.managementsystem.response;
-import java.util.Date;
 
 public class InvestmentResponse{
 	
 	private int investmentId;
 	private String ticker;
-	private Date buyDate;
-	private double buyPrice;
+	private double investmentCost;
 	private int units;
 	private String username;
+	private String portfolio;
 	
 	public InvestmentResponse(){
 		super();
@@ -30,20 +29,12 @@ public class InvestmentResponse{
 		this.ticker = ticker;
 	}
 
-	public Date getBuyDate() {
-		return buyDate;
+	public double getInvestmentCost() {
+		return investmentCost;
 	}
 
-	public void setBuyDate(Date buyDate) {
-		this.buyDate = buyDate;
-	}
-
-	public double getBuyPrice() {
-		return buyPrice;
-	}
-
-	public void setBuyPrice(double buyPrice) {
-		this.buyPrice = buyPrice;
+	public void setInvestmentCost(double investmentCost) {
+		this.investmentCost = investmentCost;
 	}
 
 	public int getUnits() {
@@ -61,7 +52,13 @@ public class InvestmentResponse{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
+
+	public String getPortfolio() {
+		return portfolio;
+	}
+
+	public void setPortfolio(String portfolio) {
+		this.portfolio = portfolio;
+	}
 	
 }

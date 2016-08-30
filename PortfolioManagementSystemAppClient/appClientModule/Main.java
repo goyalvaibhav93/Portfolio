@@ -22,7 +22,7 @@ public class Main {
 		prop.put("jboss.naming.client.ejb.context", true);
 
 		// Create the JNDI InitialContext.
-		Context context = new InitialContext(prop);
+		Context context = new InitialContext(prop); 
 		
 		/*StockBeanRemote bean = (StockBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/StockBean!portfolio.managementsystem.ejb.StockBeanRemote");
 		
