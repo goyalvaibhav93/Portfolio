@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -21,7 +22,6 @@ public class Instrument implements Serializable {
 	
 	   
 	private String ticker;
-	private String category;
 	private static final long serialVersionUID = 1L;
 	
 	@JsonManagedReference
@@ -29,6 +29,12 @@ public class Instrument implements Serializable {
 	
 	@JsonManagedReference
 	private List<Market> instrumentsMarket = new ArrayList<>();
+	
+	@JsonManagedReference
+	private List<Transaction> transactions = new ArrayList<>();
+	
+	@JsonBackReference
+	private Portfolio portfolio;
 	
 	public Instrument() {
 		super();
@@ -63,13 +69,27 @@ public class Instrument implements Serializable {
 	public void setInstrumentsMarket(List<Market> instrumentsMarket) {
 		this.instrumentsMarket = instrumentsMarket;
 	}
-
-	public String getCategory() {
-		return this.category;
+	
+	
+	@OneToMany(mappedBy="stockTransaction")
+	public List<Transaction> getTransactions() {
+		return transactions;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
-   
+
+	@ManyToOne
+	@JoinColumn(name="portfolioId")
+	public Portfolio getPortfolio() {
+		return portfolio;
+	}
+
+	public void setPortfolio(Portfolio portfolio) {
+		this.portfolio = portfolio;
+	}
+	
+	
+	
 }

@@ -42,7 +42,7 @@ public class Market implements Serializable {
 	}   
 	
 	@ManyToOne
-	@JoinColumn(name="financial_instruments_ticker")
+	@JoinColumn(name="stock_ticker")
 	public Instrument getInstrumentMarket() {
 		return instrumentMarket;
 	}

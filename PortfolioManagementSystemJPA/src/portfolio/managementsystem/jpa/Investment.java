@@ -51,7 +51,7 @@ public class Investment implements Serializable{
 	}
 	
 	@ManyToOne
-	@JoinColumn(name="financial_instruments_ticker")
+	@JoinColumn(name="ticker")
 	public Instrument getInstrument() {
 		return instrument;
 	}
