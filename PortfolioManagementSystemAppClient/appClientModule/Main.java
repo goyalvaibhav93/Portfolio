@@ -6,6 +6,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import portfolio.managementsystem.ejb.InvestmentBeanRemote;
+import portfolio.managementsystem.ejb.TransactionBeanLocal;
+import portfolio.managementsystem.ejb.TransactionBeanRemote;
 import portfolio.managementsystem.jpa.Investment;
 
 public class Main {
@@ -29,9 +31,12 @@ public class Main {
 			System.out.println(s.getTicker());
 		}*/
 		
-		InvestmentBeanRemote bean = (InvestmentBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/InvestmentBean!portfolio.managementsystem.ejb.InvestmentBeanRemote");
+//	InvestmentBeanRemote bean = (InvestmentBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/InvestmentBean!portfolio.managementsystem.ejb.InvestmentBeanRemote");
 		
-		System.out.println(bean.getAllInvestments());
+//		System.out.println(bean.getAllInvestments());
+		TransactionBeanRemote bean = (TransactionBeanRemote) context.lookup("PortfolioManagementSystem/PortfolioManagementSystemEJB/TransactionBean!portfolio.managementsystem.ejb.TransactionBeanRemote");
+		
+		System.out.println(bean.getAllTransactions()); 
 		
 		/*for (Investment i : bean.getAllInvestments()){
 			System.out.println(i.getInstrument().getTicker());

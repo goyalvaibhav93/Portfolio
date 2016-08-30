@@ -18,12 +18,15 @@ public class Transaction implements Serializable {
 	private int transactionId;
 	private int units;
 	private double price;
-	private Date date;
+	private Date transactionDate;
 	private int buySell;
 	private static final long serialVersionUID = 1L;
 
 	@JsonBackReference
 	private Stock stockTransaction;
+	
+	@JsonBackReference
+	private User userTransaction;
 	
 	public Transaction() {
 		super();
@@ -41,7 +44,7 @@ public class Transaction implements Serializable {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="financial_instruments_ticker")
+	@JoinColumn(name="ticker")
 	public Stock getStockTransaction() {
 		return stockTransaction;
 	}
@@ -49,11 +52,22 @@ public class Transaction implements Serializable {
 	public void setStockTransaction(Stock stockTransaction) {
 		this.stockTransaction = stockTransaction;
 	}
+	
+	
+	@ManyToOne
+	@JoinColumn(name="username")
+	public User getUserTransaction() {
+		return userTransaction;
+	}
+
+	public void setUserTransaction(User userTransaction) {
+		this.userTransaction = userTransaction;
+	}
 
 	public int getUnits() {
 		return this.units;
 	}
-
+	
 	public void setUnits(int units) {
 		this.units = units;
 	}   
@@ -64,14 +78,15 @@ public class Transaction implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}   
-	public Date getDate() {
-		return this.date;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}   
-	public int getBuySell() {
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+		public int getBuySell() {
 		return this.buySell;
 	}
 

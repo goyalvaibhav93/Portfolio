@@ -26,6 +26,9 @@ public class User implements Serializable {
 	
 	@JsonManagedReference
 	private List<Investment> investments = new ArrayList<>();
+	
+	@JsonManagedReference
+	private List<Transaction> transactions = new ArrayList<>();
 
 	public User() {
 		super();
@@ -50,6 +53,15 @@ public class User implements Serializable {
 		this.investments = investments;
 	}
 	
+	@OneToMany(mappedBy="userTransaction")
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+
 	public String getPassword() {
 		return this.password;
 	}
