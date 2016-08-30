@@ -40,32 +40,10 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
     EntityManager em;
     
     @Override
-    public List<Investment> getAllInvestmentsTest(){
+    public List<Investment> getAllInvestments(){
     	String sql = "SELECT p FROM Investment AS p";
     	TypedQuery<Investment> query = em.createQuery(sql,Investment.class);
     	return query.getResultList();
-    }
-    
-    @Override
-    public List<Object> getAllInvestments(){
-    	String sql = "SELECT p FROM Investment AS p";
-    	TypedQuery<Investment> query = em.createQuery(sql,Investment.class);
-    	List<Object> response =  new ArrayList<>();
-    	
-    	for (Investment i : query.getResultList()){
-			System.out.println(i.getInvestmentId());
-			System.out.println(i.getBuyDate());
-			System.out.println(i.getBuyPrice());
-			System.out.println(i.getUnits());
-			System.out.println(i.getInstrument().getTicker());
-			System.out.println(i.getUser().getUsername());
-			
-			response.add((Object) Arrays.asList(i.getInvestmentId(),i.getBuyDate(),i.getBuyPrice(),i.getUnits(),i.getInstrument().getTicker(),i.getUser().getUsername()));
-			
-		}
-    	
-    	return response;
-    	
     }
     
     @Override
@@ -87,6 +65,8 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
     	i.setInstrument(queryTicker.getResultList().get(0));
     	
     	em.persist(i);
+    	
+    	//System.out.println(buyPrice +" " +units + " " + username + ticker);
     	
     }
 

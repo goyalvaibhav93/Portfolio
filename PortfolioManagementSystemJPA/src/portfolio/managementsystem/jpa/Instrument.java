@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  *
  */
 @Entity
-@Table(name="financial_instruments")
+@Table(name="stocks")
 
 public class Instrument implements Serializable {
 

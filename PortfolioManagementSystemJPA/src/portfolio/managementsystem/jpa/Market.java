@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  *
  */
 @Entity
-@Table(name="instrument_market_details")
+@Table(name="stock_market_details")
 public class Market implements Serializable {
 
 	   

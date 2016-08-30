@@ -19,9 +19,7 @@ import javax.ws.rs.Produces;
 
 import portfolio.managementsystem.ejb.InvestmentBeanLocal;
 import portfolio.managementsystem.jpa.Investment;
-import portfolio.managementsystem.jpa.Stock;
 import portfolio.managementsystem.response.InvestmentResponse;
-import portfolio.managementsystem.response.JSONParse;
 
 @Path("/investments/current")
 public class InvestmentsREST {
@@ -37,17 +35,11 @@ public class InvestmentsREST {
 		}
 	}
 	
-	/*@GET
-	@Produces("application/json")
-	public List<Investment> getAllInvestments(){
-		return bean.getAllInvestmentsTest();
-	}*/
-	
 	@GET
 	@Produces("application/json")
 	public List<InvestmentResponse> getAllInvestments2(){
 		List<InvestmentResponse> response = new ArrayList<>();
-		for(Investment i : bean.getAllInvestmentsTest()){
+		for(Investment i : bean.getAllInvestments()){
 			
 			InvestmentResponse obj = new InvestmentResponse();
 			
