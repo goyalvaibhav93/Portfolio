@@ -2,7 +2,7 @@ package portfolio.managementsystem.response;
 
 import java.util.Date;
 
-public class TransactionResponse {
+public class AnalyzeResponse {
 	private int transactionId;
 	private String ticker;
 	private Date transactionDate;
@@ -11,7 +11,7 @@ public class TransactionResponse {
 	private int units;
 	private String username;
 	
-	public TransactionResponse(){
+	public AnalyzeResponse(){
 		super();
 	}
 

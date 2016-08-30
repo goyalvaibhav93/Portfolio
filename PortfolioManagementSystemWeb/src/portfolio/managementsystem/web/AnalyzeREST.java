@@ -14,7 +14,7 @@ import portfolio.managementsystem.ejb.AnalyzeBeanLocal;
 import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.Transaction;
 import portfolio.managementsystem.response.InvestmentResponse;
-import portfolio.managementsystem.response.TransactionResponse;
+import portfolio.managementsystem.response.AnalyzeResponse;
 
 
 @Path("stocks/analyze")
@@ -44,8 +44,8 @@ public class AnalyzeREST {
 	@GET
 	@Produces("application/json")
 	@Path("/{ticker}")
-	public TransactionResponse sendTickerResponse(@PathParam("ticker")String ticker){
-		 TransactionResponse response = new TransactionResponse();
+	public AnalyzeResponse sendTickerResponse(@PathParam("ticker")String ticker){
+		 AnalyzeResponse response = new AnalyzeResponse();
 		   Transaction transaction = bean.getTransactionByTicker(ticker);
 			//InvestmentResponse response = new InvestmentResponse();
 			response.setTransactionId(transaction.getTransactionId());
