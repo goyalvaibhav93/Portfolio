@@ -44,7 +44,7 @@ public class InvestmentsREST {
 			InvestmentResponse obj = new InvestmentResponse();
 			
 			obj.setInvestmentId(i.getInvestmentId());
-			obj.setTicker(i.getInstrument().getTicker());
+			obj.setTicker(i.getStock().getTicker());
 			obj.setBuyDate(i.getBuyDate());
 			obj.setBuyPrice(i.getBuyPrice());
 			obj.setUnits(i.getUnits());

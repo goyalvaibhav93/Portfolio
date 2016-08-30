@@ -25,7 +25,7 @@ public class Market implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonBackReference
-	private Instrument instrumentMarket;
+	private Stock stockMarket;
 	
 	public Market() {
 		super();
@@ -43,12 +43,12 @@ public class Market implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="stock_ticker")
-	public Instrument getInstrumentMarket() {
-		return instrumentMarket;
+	public Stock getStockMarket() {
+		return stockMarket;
 	}
 
-	public void setInstrumentMarket(Instrument instrumentMarket) {
-		this.instrumentMarket = instrumentMarket;
+	public void setStockMarket(Stock stockMarket) {
+		this.stockMarket = stockMarket;
 	}
 
 	public Date getDate() {

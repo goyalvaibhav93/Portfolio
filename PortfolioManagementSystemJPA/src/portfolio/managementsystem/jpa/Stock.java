@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
- * Entity implementation class for Entity: Instrument
+ * Entity implementation class for Entity: Stock
  *
  */
 @Entity
 @Table(name="stocks")
 
-public class Instrument implements Serializable {
+public class Stock implements Serializable {
 
 	
 	   
@@ -28,7 +28,7 @@ public class Instrument implements Serializable {
 	private List<Investment> investments = new ArrayList<>();
 	
 	@JsonManagedReference
-	private List<Market> instrumentsMarket = new ArrayList<>();
+	private List<Market> stocksMarket = new ArrayList<>();
 	
 	@JsonManagedReference
 	private List<Transaction> transactions = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Instrument implements Serializable {
 	@JsonBackReference
 	private Portfolio portfolio;
 	
-	public Instrument() {
+	public Stock() {
 		super();
 	}  
 	
@@ -51,7 +51,7 @@ public class Instrument implements Serializable {
 	}   
 	
 	
-	@OneToMany(mappedBy="instrument")
+	@OneToMany(mappedBy="stock")
 	public List<Investment> getInvestments() {
 		return investments;
 	}
@@ -61,13 +61,12 @@ public class Instrument implements Serializable {
 	}
 	
 	
-	@OneToMany(mappedBy="instrumentMarket")
+	@OneToMany(mappedBy="stockMarket")
 	public List<Market> getInstrumentsMarket() {
-		return instrumentsMarket;
+		return stocksMarket;
 	}
 
-	public void setInstrumentsMarket(List<Market> instrumentsMarket) {
-		this.instrumentsMarket = instrumentsMarket;
+	public void setInstrumentsMarket(List<Market> stocksMarket) {
 	}
 	
 	

@@ -23,7 +23,7 @@ public class Portfolio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonManagedReference
-	private List<Instrument> stocks = new ArrayList<>();
+	private List<Stock> stocks = new ArrayList<>();
 	
 	public Portfolio() {
 		super();
@@ -41,11 +41,11 @@ public class Portfolio implements Serializable {
 	
 	
 	@OneToMany(mappedBy="portfolio")
-	public List<Instrument> getStocks() {
+	public List<Stock> getStocks() {
 		return stocks;
 	}
 
-	public void setStocks(List<Instrument> stocks) {
+	public void setStocks(List<Stock> stocks) {
 		this.stocks = stocks;
 	}
 

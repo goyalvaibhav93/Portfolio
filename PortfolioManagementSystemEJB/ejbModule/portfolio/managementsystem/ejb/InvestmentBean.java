@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import portfolio.managementsystem.jpa.Instrument;
+import portfolio.managementsystem.jpa.Stock;
 import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.User;
 
@@ -59,10 +59,10 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
     	
     	i.setUser(query.getResultList().get(0));
     	
-    	String sqlTicker = "SELECT t FROM  Instrument t WHERE ticker='"+ticker+"'";
-    	TypedQuery<Instrument> queryTicker = em.createQuery(sqlTicker,Instrument.class);
+    	String sqlTicker = "SELECT t FROM  Stock t WHERE ticker='"+ticker+"'";
+    	TypedQuery<Stock> queryTicker = em.createQuery(sqlTicker,Stock.class);
     	
-    	i.setInstrument(queryTicker.getResultList().get(0));
+    	i.setStock(queryTicker.getResultList().get(0));
     	
     	em.persist(i);
     	

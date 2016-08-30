@@ -26,7 +26,7 @@ public class Investment implements Serializable{
 	private int units;
 	
 	@JsonBackReference
-	private Instrument instrument;
+	private Stock stock;
 	
 	@JsonBackReference
 	private User user;
@@ -36,8 +36,6 @@ public class Investment implements Serializable{
 	
 	public Investment(){
 		super();
-//		this.ticker = instrument.getTicker();
-//		this.username = user.getUsername();
 	}
 	
 	@Id
@@ -52,12 +50,12 @@ public class Investment implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="ticker")
-	public Instrument getInstrument() {
-		return instrument;
+	public Stock getStock() {
+		return stock;
 	}
 
-	public void setInstrument(Instrument instrument) {
-		this.instrument = instrument;
+	public void setStock(Stock stock) {
+		this.stock = stock;
 	}
 
 	public Date getBuyDate() {

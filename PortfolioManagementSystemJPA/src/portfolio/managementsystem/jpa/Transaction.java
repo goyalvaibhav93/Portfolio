@@ -23,7 +23,7 @@ public class Transaction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonBackReference
-	private Instrument stockTransaction;
+	private Stock stockTransaction;
 	
 	public Transaction() {
 		super();
@@ -42,11 +42,11 @@ public class Transaction implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="financial_instruments_ticker")
-	public Instrument getStockTransaction() {
+	public Stock getStockTransaction() {
 		return stockTransaction;
 	}
 
-	public void setStockTransaction(Instrument stockTransaction) {
+	public void setStockTransaction(Stock stockTransaction) {
 		this.stockTransaction = stockTransaction;
 	}
 
