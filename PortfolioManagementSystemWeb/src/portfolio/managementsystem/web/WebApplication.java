@@ -14,7 +14,6 @@ public class WebApplication  extends Application {
 	private Set<Class<?>> empty = new HashSet<Class<?>>();
 	
 	public WebApplication() throws NamingException{
-		singletons.add(new PerformanceSummary());
 		singletons.add(new InvestmentsREST());
 		singletons.add(new PostTest());
 	}

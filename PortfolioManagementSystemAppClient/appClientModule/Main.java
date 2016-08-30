@@ -1,13 +1,12 @@
 import java.util.Properties;
 
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import portfolio.managementsystem.ejb.InvestmentBeanRemote;
-import portfolio.managementsystem.ejb.StockBeanRemote;
 import portfolio.managementsystem.jpa.Investment;
-import portfolio.managementsystem.jpa.Stock;
 
 public class Main {
 	public static void main(String[] args) throws NamingException {
