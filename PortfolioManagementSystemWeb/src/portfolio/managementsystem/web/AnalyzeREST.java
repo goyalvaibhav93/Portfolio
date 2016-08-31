@@ -33,14 +33,6 @@ public class AnalyzeREST {
 		}
 	}
 	
-//	@POST
-//	@Consumes("application/json")
-//	@Path("/tickerId")
-//	public void obtainTicker(JSONParse content){
-//		String ticker = content.ticker;
-//		sendTickerResponse(ticker);
-//	}
-	
 	@GET
 	@Produces("application/json")
 	@Path("/{ticker}")
@@ -50,7 +42,7 @@ public class AnalyzeREST {
 			//InvestmentResponse response = new InvestmentResponse();
 			response.setTransactionId(transaction.getTransactionId());
 			response.setTicker(ticker);
-			response.setTransactionDate(transaction.getDate());
+			//response.setTransactionDate(transaction.getDate());
 			response.setTransactionPrice(transaction.getPrice());
 			response.setUnits(transaction.getUnits());
 			return response;

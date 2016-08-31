@@ -53,26 +53,7 @@ public class InvestmentsREST {
 		}	
 		return response;
 	}
-	/*
-	@GET
-	@Produces("application/json")
-	@Path("/{portfolioName}")
-	public List<InvestmentResponse> getAllInvestmentsByPortfolio(@PathParam("portfolioName")String portfolioName){
-		List<InvestmentResponse> response = new ArrayList<>();
-		for(Investment i : bean.getInvestmentsByPortfolio(portfolioName)){
-			
-			InvestmentResponse obj = new InvestmentResponse();
-			
-			obj.setInvestmentId(i.getInvestmentId());
-			obj.setTicker(i.getStock().getTicker());
-			obj.setInvestmentCost(i.getinvestmentCost());
-			obj.setUnits(i.getUnits());
-			obj.setUsername(i.getUser().getUsername());
-			obj.setPortfolio(i.getStock().getPortfolio().getPortfolioName());
-			response.add(obj);
-		}	
-		return response;
-	}*/	
+	
 	
 	@GET
 	@Produces("application/json")
