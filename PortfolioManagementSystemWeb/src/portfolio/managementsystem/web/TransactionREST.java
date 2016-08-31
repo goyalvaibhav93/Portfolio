@@ -99,17 +99,23 @@ private TransactionBeanLocal bean;
 	@GET
 	@Produces("application/json")
 	@Path("/dates")
-	public List<Transaction> getTransactionsByDate(@QueryParam("start")long start, @QueryParam("end")long end) throws ParseException{
+	public List<TransactionResponse> getTransactionsByDate(@QueryParam("start")long start, @QueryParam("end")long end) throws ParseException{
 		
-		System.out.println("Hello");
-		System.out.println(start);
-		System.out.println(end);
 		Date d1 = new java.sql.Date((long)start);
 		Date d2 = new java.sql.Date((long)end);
-		System.out.println("date 1 is "+d1);
-		System.out.println("date 2 is "+d2);
-		System.out.println(bean.getTransactionsByDates(d1, d2));
-		return bean.getTransactionsByDates(d1, d2);
+		List<TransactionResponse> response = new ArrayList<>();
+		for(Transaction t : bean.getTransactionsByDates(d1, d2)){
+			TransactionResponse r = new TransactionResponse();
+			r.setBuySell(t.getBuySell());
+			r.setDate(t.getTransactionDate());
+			r.setPrice(t.getPrice());
+			r.setTicker(t.getStockTransaction().getTicker());
+			r.setTransactionId(t.getTransactionId());
+			r.setUnits(t.getUnits());
+			r.setUsername(t.getUserTransaction().getUsername());
+			response.add(r);
+		}
+		return response;
 		
 	} 
 
