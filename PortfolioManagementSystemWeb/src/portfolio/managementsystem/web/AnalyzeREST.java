@@ -1,6 +1,9 @@
 package portfolio.managementsystem.web;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.GET;
@@ -59,7 +62,7 @@ public class AnalyzeREST {
 		
 	}
 	
-	@GET
+/*	@GET
 	@Produces("application/json")
 	@Path("/compare")
 	public CompareResponse compare(@QueryParam("ticker1")String ticker1, @QueryParam("ticker2")String ticker2){
@@ -85,8 +88,33 @@ public class AnalyzeREST {
 		return response;
 		
 	}
-	
+*/	
 
-
+	@GET
+	@Produces("application/json")
+	@Path("/compare")
+	public List<AnalyzeFinalResponse> compare(@QueryParam("ticker1")String ticker1, @QueryParam("ticker2")String ticker2){
+		
+		Stock s1 = beanStock.getStockByTicker(ticker1);
+		Stock s2 = beanStock.getStockByTicker(ticker2);
+		
+		List<AnalyzeFinalResponse> response = new ArrayList<>(); 
+		
+		AnalyzeFinalResponse obj = new AnalyzeFinalResponse();
+		obj.setAvgChange(s1.getAvgChange());
+		obj.setLiquidity(s1.getLiquidity());
+		obj.setVolatility(s1.getVolatility());
+		obj.setMarketList(beanMarket.getStockMarketDetails(ticker1));
+		response.add(obj);
+		
+		obj.setAvgChange(s2.getAvgChange());
+		obj.setLiquidity(s2.getLiquidity());
+		obj.setVolatility(s2.getVolatility());
+		obj.setMarketList(beanMarket.getStockMarketDetails(ticker2));
+		response.add(obj);
+		
+		return response;
+		
+	}
 
 }
