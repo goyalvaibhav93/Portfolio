@@ -39,7 +39,6 @@ public class InvestmentsREST {
 	public List<InvestmentResponse> getAllInvestments(){
 		List<InvestmentResponse> response = new ArrayList<>();
 		for(Investment i : bean.getAllInvestments()){
-			
 			InvestmentResponse obj = new InvestmentResponse();
 			
 			obj.setInvestmentId(i.getInvestmentId());
@@ -48,6 +47,11 @@ public class InvestmentsREST {
 			obj.setUnits(i.getUnits());
 			obj.setUsername(i.getUser().getUsername());
 			obj.setPortfolio(i.getStock().getPortfolio().getPortfolioName());
+			
+			double price = bean.getProfit(obj.getTicker());
+			double profit = price*(double)obj.getUnits() - obj.getInvestmentCost();
+			obj.setProfit(profit);
+			
 			response.add(obj);
 		}	
 		return response;

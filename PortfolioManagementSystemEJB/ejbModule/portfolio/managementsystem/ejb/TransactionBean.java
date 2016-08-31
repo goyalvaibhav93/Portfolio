@@ -1,6 +1,5 @@
 package portfolio.managementsystem.ejb;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -109,7 +108,7 @@ public class TransactionBean implements TransactionBeanRemote, TransactionBeanLo
     	}
     	
     	t.setBuySell(type);
-    	t.setTransactionDate(Calendar.getInstance().getTime());
+    	t.setTransactionDate(d);
     	t.setPrice(price);
     	t.setUnits(units);
     	
@@ -120,11 +119,11 @@ public class TransactionBean implements TransactionBeanRemote, TransactionBeanLo
     }
 
     public List<Transaction> getTransactionsByTicker(String ticker){
-    	String sqlStock = "SELECT s from Stock AS s where ticker='"+ticker+"'";
-    	TypedQuery<Stock> query = em.createQuery(sqlStock,Stock.class);
-    	Stock s =query.getResultList().get(0);
-    	
-    	String sqlTransaction = "SELECT t from Transaction AS t where stockTransaction.ticker = '"+s.getTicker()+"'";
+//    	String sqlStock = "SELECT s from Stock AS s where ticker='"+ticker+"'";
+//    	TypedQuery<Stock> query = em.createQuery(sqlStock,Stock.class);
+//    	Stock s =query.getResultList().get(0);
+    	System.out.println(ticker);
+    	String sqlTransaction = "SELECT t FROM Transaction AS t WHERE t.stockTransaction.ticker = '"+ticker+"'";
     	TypedQuery<Transaction> qTransaction = em.createQuery(sqlTransaction,Transaction.class);
     	return qTransaction.getResultList();
     }

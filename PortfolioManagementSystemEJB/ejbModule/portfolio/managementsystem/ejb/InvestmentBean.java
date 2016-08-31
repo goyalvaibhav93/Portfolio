@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import portfolio.managementsystem.jpa.Stock;
+import portfolio.managementsystem.jpa.Transaction;
 import portfolio.managementsystem.jpa.Investment;
 import portfolio.managementsystem.jpa.User;
 
@@ -71,6 +72,19 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
     	TypedQuery<Investment> query = em.createQuery(sql,Investment.class);
     	
     	return query.getResultList();
+    	
+    }
+    
+    @Override
+    public double getProfit(String ticker){
+
+//    	String sql = "SELECT s FROM Stock WHERE ticker='"+ticker+"')";
+//    	TypedQuery<Stock> query = em.createQuery(sql,Stock.class);
+//    	Stock s = query.getResultList().get(0);
+    	
+    	String sqlTransaction = "SELECT t FROM Transaction t WHERE stockTransaction.ticker='"+ticker+"' ORDER BY transactionDate DESC";
+    	TypedQuery<Transaction> queryT = em.createQuery(sqlTransaction,Transaction.class);
+    	return queryT.getResultList().get(0).getPrice();
     	
     }
 

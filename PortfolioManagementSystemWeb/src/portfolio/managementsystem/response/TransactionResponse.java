@@ -10,6 +10,7 @@ public class TransactionResponse {
 	public int buySell;
 	public String ticker;
 	public String username;
+	public String dateTime;
 	public int getTransactionId() {
 		return transactionId;
 	}
@@ -52,5 +53,12 @@ public class TransactionResponse {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
+	}
+	
 	
 }

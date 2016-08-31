@@ -7,14 +7,16 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import portfolio.managementsystem.ejb.MarketBeanLocal;
 import portfolio.managementsystem.ejb.StockBeanLocal;
 import portfolio.managementsystem.jpa.Stock;
 import portfolio.managementsystem.response.AnalyzeFinalResponse;
+import portfolio.managementsystem.response.CompareResponse;
 
 
-@Path("stocks/analyze")
+@Path("stocks")
 public class AnalyzeREST {
 	
 	private MarketBeanLocal beanMarket;
@@ -42,7 +44,7 @@ public class AnalyzeREST {
 	
 	@GET
 	@Produces("application/json")
-	@Path("/{ticker}")
+	@Path("/analyze/{ticker}")
 	public AnalyzeFinalResponse getStockAnalysis(@PathParam("ticker")String ticker){
 			
 		Stock s = beanStock.getStockByTicker(ticker);
@@ -54,6 +56,30 @@ public class AnalyzeREST {
 		obj.setMarketList(beanMarket.getStockMarketDetails(ticker));
 			
 		return obj;
+		
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/compare")
+	public CompareResponse compare(@QueryParam("ticker1")String ticker1, @QueryParam("ticker2")String ticker2){
+		
+//		System.out.println(ticker1);
+//		System.out.println(ticker2);
+//		System.out.println(s1.getTicker()+s1.getLiquidity());
+//		System.out.println(s2.getTicker()+s2.getLiquidity());
+		Stock s1 = beanStock.getStockByTicker(ticker1);
+		Stock s2 = beanStock.getStockByTicker(ticker2);
+		
+		CompareResponse response = new CompareResponse();
+		response.setAvgChange1(s1.getAvgChange());
+		response.setAvgChange2(s2.getAvgChange());
+		response.setLiquidity1(s1.getLiquidity());
+		response.setLiquidity2(s2.getLiquidity());
+		response.setVolatility1(s2.getVolatility());
+		response.setVolatility2(s2.getVolatility());
+		
+		return response;
 		
 	}
 	

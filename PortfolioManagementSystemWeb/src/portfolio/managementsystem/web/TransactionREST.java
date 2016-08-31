@@ -1,5 +1,8 @@
 package portfolio.managementsystem.web;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import portfolio.managementsystem.ejb.TransactionBeanLocal;
@@ -55,19 +59,40 @@ private TransactionBeanLocal bean;
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/new")
-	public String insertTransaction(TransactionResponse t) {
+	public String insertTransaction(TransactionResponse t) throws ParseException {
 		
 		String ticker = t.ticker;
 		int units = t.units;
 		double price = t.price;
+		DateFormat df = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss");
 		Date d = Calendar.getInstance().getTime();
 		System.out.println(d.toString());
 		String username = "sun32";
 		int buySell = t.buySell;
 		System.out.println(ticker+ units + "" + price + ""+ buySell);
 		
-		return bean.insertNewTransaction(buySell, ticker, units, price, d, username);
+		return bean.insertNewTransaction(buySell, ticker, units, price, df.parse(t.getDateTime()), username);
 		
 	} 
 	
+	@GET
+	@Produces("application/json")
+	@Path("/{ticker}")
+	public List<TransactionResponse> getTransactionsByTicker(@PathParam("ticker") String ticker){
+		List<TransactionResponse> response = new ArrayList<>();
+		System.out.println(bean.getTransactionsByTicker(ticker));
+		for(Transaction t : bean.getTransactionsByTicker(ticker)){
+			TransactionResponse r = new TransactionResponse();
+			r.setBuySell(t.getBuySell());
+			r.setDate(t.getTransactionDate());
+			r.setPrice(t.getPrice());
+			r.setTicker(t.getStockTransaction().getTicker());
+			r.setTransactionId(t.getTransactionId());
+			r.setUnits(t.getUnits());
+			r.setUsername(t.getUserTransaction().getUsername());
+			response.add(r);
+		}
+		return response;
+	}
+
 }
