@@ -37,7 +37,6 @@ public class InvestmentsREST {
 	
 	@GET
 	@Produces("application/json")
-	@Path("/current")
 	public List<InvestmentResponse> getAllInvestments(){
 		List<InvestmentResponse> response = new ArrayList<>();
 		for(Investment i : bean.getAllInvestments()){
