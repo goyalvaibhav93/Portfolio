@@ -12,4 +12,5 @@ public interface TransactionBeanRemote {
 	public List<Transaction> getAllTransactions();
 	public String insertNewTransaction(int type, String ticker, int units, double price, Date d, String username);
 	public List<Transaction> getTransactionsByTicker(String ticker);
+	public List<Transaction> getTransactionsByDates(Date d1, Date d2);
 }

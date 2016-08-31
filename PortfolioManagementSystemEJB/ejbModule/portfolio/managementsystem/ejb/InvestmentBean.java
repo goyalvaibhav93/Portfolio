@@ -3,6 +3,7 @@ package portfolio.managementsystem.ejb;
 import java.util.List;
 
 
+
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
@@ -11,8 +12,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import portfolio.managementsystem.jpa.Stock;
-import portfolio.managementsystem.jpa.Transaction;
 import portfolio.managementsystem.jpa.Investment;
+import portfolio.managementsystem.jpa.Market;
 import portfolio.managementsystem.jpa.User;
 
 /**
@@ -82,9 +83,13 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
 //    	TypedQuery<Stock> query = em.createQuery(sql,Stock.class);
 //    	Stock s = query.getResultList().get(0);
     	
-    	String sqlTransaction = "SELECT t FROM Transaction t WHERE stockTransaction.ticker='"+ticker+"' ORDER BY transactionDate DESC";
-    	TypedQuery<Transaction> queryT = em.createQuery(sqlTransaction,Transaction.class);
-    	return queryT.getResultList().get(0).getPrice();
+//    	String sqlTransaction = "SELECT t FROM Transaction t WHERE stockTransaction.ticker='"+ticker+"' ORDER BY transactionDate DESC";
+//    	TypedQuery<Transaction> queryT = em.createQuery(sqlTransaction,Transaction.class);
+//    	return queryT.getResultList().get(0).getPrice();
+    	
+    	String sql = "SELECT m FROM Market m WHERE stockMarket.ticker='"+ticker+"' ORDER BY date DESC";
+    	TypedQuery<Market> query = em.createQuery(sql,Market.class);
+    	return query.getResultList().get(0).getClose();
     	
     }
 

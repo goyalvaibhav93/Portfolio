@@ -71,6 +71,9 @@ public class AnalyzeREST {
 		Stock s1 = beanStock.getStockByTicker(ticker1);
 		Stock s2 = beanStock.getStockByTicker(ticker2);
 		
+		System.out.println(s1);
+		System.out.println(s2);
+		
 		CompareResponse response = new CompareResponse();
 		response.setAvgChange1(s1.getAvgChange());
 		response.setAvgChange2(s2.getAvgChange());

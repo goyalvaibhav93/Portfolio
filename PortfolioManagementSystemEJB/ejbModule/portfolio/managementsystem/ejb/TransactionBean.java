@@ -127,5 +127,22 @@ public class TransactionBean implements TransactionBeanRemote, TransactionBeanLo
     	TypedQuery<Transaction> qTransaction = em.createQuery(sqlTransaction,Transaction.class);
     	return qTransaction.getResultList();
     }
+    
+    public List<Transaction> getTransactionsByDates(Date d1, Date d2){
+//    	String sql = "SELECT t FROM Transaction AS t WHERE transactionDate BETWEEN "+d1+" AND "+d2+"";
+    	String sql = "SELECT t FROM Transaction AS t WHERE transactionDate >=:date1 AND transactionDate <=:date2 ";
+    	TypedQuery<Transaction> query = em.createQuery(sql,Transaction.class);
+    	query.setParameter("date1",d1);
+    	query.setParameter("date2",d2);
+    	return query.getResultList();
+    	
+    	/*Query query = em.createNativeQuery(sql);
+    	List<Object> arr = query.getResultList();
+    	List<Transaction> tarr = new ArrayList<>();
+    	for(Object t : arr){
+    		tarr.add((Transaction) t);
+    	}*/
+    	
+    }
 
 }

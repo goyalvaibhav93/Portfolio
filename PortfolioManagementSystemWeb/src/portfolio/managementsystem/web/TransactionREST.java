@@ -16,6 +16,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import portfolio.managementsystem.ejb.TransactionBeanLocal;
 import portfolio.managementsystem.jpa.Transaction;
@@ -94,5 +95,22 @@ private TransactionBeanLocal bean;
 		}
 		return response;
 	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/dates")
+	public List<Transaction> getTransactionsByDate(@QueryParam("start")long start, @QueryParam("end")long end) throws ParseException{
+		
+		System.out.println("Hello");
+		System.out.println(start);
+		System.out.println(end);
+		Date d1 = new java.sql.Date((long)start);
+		Date d2 = new java.sql.Date((long)end);
+		System.out.println("date 1 is "+d1);
+		System.out.println("date 2 is "+d2);
+		System.out.println(bean.getTransactionsByDates(d1, d2));
+		return bean.getTransactionsByDates(d1, d2);
+		
+	} 
 
 }
