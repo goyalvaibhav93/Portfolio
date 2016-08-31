@@ -11,4 +11,5 @@ import portfolio.managementsystem.jpa.Transaction;
 public interface TransactionBeanLocal {
 	public List<Transaction> getAllTransactions();
 	public String insertNewTransaction(int type, String ticker, int units, double price, Date d, String username);
+	public List<Transaction> getTransactionsByTicker(String ticker);
 }

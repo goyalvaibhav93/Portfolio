@@ -8,6 +8,6 @@ import portfolio.managementsystem.jpa.Transaction;
 
 @Local
 public interface AnalyzeBeanLocal {
-    public List<Transaction> getTransaction();
-    public Transaction getTransactionByTicker(String ticker);
+	public List<Transaction> getTransaction();
+	public Transaction getTransactionByTicker(String ticker);
 }

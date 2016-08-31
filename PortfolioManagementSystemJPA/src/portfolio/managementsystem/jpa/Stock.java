@@ -22,6 +22,9 @@ public class Stock implements Serializable {
 	
 	   
 	private String ticker;
+	private double avgChange;
+	private String volatility;
+	private String liquidity;
 	private static final long serialVersionUID = 1L;
 	
 	@JsonManagedReference
@@ -67,6 +70,7 @@ public class Stock implements Serializable {
 	}
 
 	public void setInstrumentsMarket(List<Market> stocksMarket) {
+		this.stocksMarket = stocksMarket;
 	}
 	
 	
@@ -88,7 +92,30 @@ public class Stock implements Serializable {
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
-	
+
+	public double getAvgChange() {
+		return avgChange;
+	}
+
+	public void setAvgChange(double avgChange) {
+		this.avgChange = avgChange;
+	}
+
+	public String getVolatility() {
+		return volatility;
+	}
+
+	public void setVolatility(String volatility) {
+		this.volatility = volatility;
+	}
+
+	public String getLiquidity() {
+		return liquidity;
+	}
+
+	public void setLiquidity(String liquidity) {
+		this.liquidity = liquidity;
+	}
 	
 	
 }

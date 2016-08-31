@@ -2,6 +2,7 @@ package portfolio.managementsystem.ejb;
 
 import java.util.List;
 
+
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
@@ -11,7 +12,6 @@ import javax.persistence.TypedQuery;
 
 import portfolio.managementsystem.jpa.Stock;
 import portfolio.managementsystem.jpa.Investment;
-import portfolio.managementsystem.jpa.Portfolio;
 import portfolio.managementsystem.jpa.User;
 
 /**
@@ -26,7 +26,6 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
      * Default constructor. 
      */
 	
-//	String tick;
 	
     public InvestmentBean() {
         // TODO Auto-generated constructor stub
@@ -67,10 +66,7 @@ public class InvestmentBean implements InvestmentBeanRemote, InvestmentBeanLocal
     
     @Override
     public List<Investment> getInvestmentsByPortfolio(String portfolioName){
-    	String sqlPortfolio = "SELECT p FROM Portfolio AS p WHERE p.portfolioName='"+portfolioName+"'";
-    	TypedQuery<Portfolio> queryPortfolio = em.createQuery(sqlPortfolio,Portfolio.class);
-    	Portfolio p = queryPortfolio.getResultList().get(0);
-    	
+
     	String sql = "SELECT i FROM Investment AS i WHERE stock IN (SELECT s FROM Stock AS s WHERE portfolio.portfolioName='"+portfolioName+"')";
     	TypedQuery<Investment> query = em.createQuery(sql,Investment.class);
     	

@@ -119,4 +119,14 @@ public class TransactionBean implements TransactionBeanRemote, TransactionBeanLo
     	return "Transaction successfully added";
     }
 
+    public List<Transaction> getTransactionsByTicker(String ticker){
+    	String sqlStock = "SELECT s from Stock AS s where ticker='"+ticker+"'";
+    	TypedQuery<Stock> query = em.createQuery(sqlStock,Stock.class);
+    	Stock s =query.getResultList().get(0);
+    	
+    	String sqlTransaction = "SELECT t from Transaction AS t where stockTransaction.ticker = '"+s.getTicker()+"'";
+    	TypedQuery<Transaction> qTransaction = em.createQuery(sqlTransaction,Transaction.class);
+    	return qTransaction.getResultList();
+    }
+
 }

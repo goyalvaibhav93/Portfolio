@@ -3,24 +3,16 @@ package portfolio.managementsystem.response;
 import java.util.Date;
 
 public class AnalyzeResponse {
-	private int transactionId;
 	private String ticker;
-	private Date transactionDate;
-	private double transactionPrice;
-	private int buySell;
-	private int units;
-	private String username;
+	private double open;
+	private double high;
+	private double low;
+	private double close;
+	private int volumeTraded;
+	private Date date;
+	
 	
 	public AnalyzeResponse(){
-		super();
-	}
-
-	public int getTransactionId() {
-		return transactionId;
-	}
-
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
 	}
 
 	public String getTicker() {
@@ -31,45 +23,54 @@ public class AnalyzeResponse {
 		this.ticker = ticker;
 	}
 
-	public Date getTransactionDate() {
-		return transactionDate;
+	public double getOpen() {
+		return open;
 	}
 
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	public void setOpen(double open) {
+		this.open = open;
 	}
 
-	public double getTransactionPrice() {
-		return transactionPrice;
+	public double getHigh() {
+		return high;
 	}
 
-	public void setTransactionPrice(double price) {
-		this.transactionPrice = price;
+	public void setHigh(double high) {
+		this.high = high;
 	}
 
-	public int getBuySell() {
-		return buySell;
+	public double getLow() {
+		return low;
 	}
 
-	public void setBuySell(int buySell) {
-		this.buySell = buySell;
+	public void setLow(double low) {
+		this.low = low;
 	}
 
-	public int getUnits() {
-		return units;
+	public double getClose() {
+		return close;
 	}
 
-	public void setUnits(int units) {
-		this.units = units;
+	public void setClose(double close) {
+		this.close = close;
 	}
 
-	public String getUsername() {
-		return username;
+	public int getVolumeTraded() {
+		return volumeTraded;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setVolumeTraded(int volumeTraded) {
+		this.volumeTraded = volumeTraded;
 	}
 
-	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+		
+		
 }

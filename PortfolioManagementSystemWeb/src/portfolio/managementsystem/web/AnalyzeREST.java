@@ -3,49 +3,58 @@ package portfolio.managementsystem.web;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import portfolio.managementsystem.ejb.AnalyzeBeanLocal;
-import portfolio.managementsystem.jpa.Investment;
-import portfolio.managementsystem.jpa.Transaction;
-import portfolio.managementsystem.response.InvestmentResponse;
-import portfolio.managementsystem.response.AnalyzeResponse;
+import portfolio.managementsystem.ejb.MarketBeanLocal;
+import portfolio.managementsystem.ejb.StockBeanLocal;
+import portfolio.managementsystem.jpa.Stock;
+import portfolio.managementsystem.response.AnalyzeFinalResponse;
 
 
 @Path("stocks/analyze")
 public class AnalyzeREST {
 	
-	private AnalyzeBeanLocal bean;
+	private MarketBeanLocal beanMarket;
+	private StockBeanLocal beanStock;
 	
 	public AnalyzeREST() throws NamingException {
 
 		try {
-			InitialContext context = new InitialContext();
-			bean = (AnalyzeBeanLocal) context.lookup(
-					"java:app/PortfolioManagementSystemEJB/AnalyzeBean!portfolio.managementsystem.ejb.AnalyzeBeanLocal");
+			InitialContext contextTransaction = new InitialContext();
+			beanMarket = (MarketBeanLocal) contextTransaction.lookup(
+					"java:app/PortfolioManagementSystemEJB/MarketBean!portfolio.managementsystem.ejb.MarketBeanLocal");
 		} catch (NamingException ex) {
 			ex.printStackTrace();
 		}
+		
+		try {
+			InitialContext contextStock = new InitialContext();
+			beanStock = (StockBeanLocal) contextStock.lookup(
+					"java:app/PortfolioManagementSystemEJB/StockBean!portfolio.managementsystem.ejb.StockBeanLocal");
+		} catch (NamingException ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 	
 	@GET
 	@Produces("application/json")
 	@Path("/{ticker}")
-	public AnalyzeResponse sendTickerResponse(@PathParam("ticker")String ticker){
-		 AnalyzeResponse response = new AnalyzeResponse();
-		   Transaction transaction = bean.getTransactionByTicker(ticker);
-			//InvestmentResponse response = new InvestmentResponse();
-			response.setTransactionId(transaction.getTransactionId());
-			response.setTicker(ticker);
-			//response.setTransactionDate(transaction.getDate());
-			response.setTransactionPrice(transaction.getPrice());
-			response.setUnits(transaction.getUnits());
-			return response;
+	public AnalyzeFinalResponse getStockAnalysis(@PathParam("ticker")String ticker){
+			
+		Stock s = beanStock.getStockByTicker(ticker);
+		
+		AnalyzeFinalResponse obj = new AnalyzeFinalResponse();
+		obj.setLiquidity(s.getLiquidity());
+		obj.setVolatility(s.getVolatility());
+		obj.setAvgChange(s.getAvgChange());
+		obj.setMarketList(beanMarket.getStockMarketDetails(ticker));
+			
+		return obj;
+		
 	}
 	
 
