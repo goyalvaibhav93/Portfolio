@@ -53,6 +53,8 @@ public class InvestmentsREST {
 			profit = (profit/obj.getInvestmentCost())*100;
 			obj.setProfit(profit);
 			
+			obj.setProfitCheck(profit>0?"1":"0");
+			
 			response.add(obj);
 		}	
 		return response;
@@ -78,6 +80,7 @@ public class InvestmentsREST {
 			double profit = price*(double)obj.getUnits() - obj.getInvestmentCost();
 			profit = (profit/obj.getInvestmentCost())*100;
 			obj.setProfit(profit);
+			obj.setProfitCheck(profit>0?"1":"0");
 			response.add(obj);
 		}
 		return response;

@@ -9,6 +9,7 @@ public class InvestmentResponse{
 	private String username;
 	private String portfolio;
 	private double profit;
+	private String profitCheck;
 	
 	public InvestmentResponse(){
 		super();
@@ -68,6 +69,14 @@ public class InvestmentResponse{
 
 	public void setProfit(double profit) {
 		this.profit = profit;
+	}
+
+	public String getProfitCheck() {
+		return profitCheck;
+	}
+
+	public void setProfitCheck(String profitCheck) {
+		this.profitCheck = profitCheck;
 	}
 	
 	
