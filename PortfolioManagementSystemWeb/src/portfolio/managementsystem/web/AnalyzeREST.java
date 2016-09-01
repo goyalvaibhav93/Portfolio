@@ -100,19 +100,22 @@ public class AnalyzeREST {
 		
 		List<AnalyzeFinalResponse> response = new ArrayList<>(); 
 		
-		AnalyzeFinalResponse obj = new AnalyzeFinalResponse();
-		obj.setAvgChange(s1.getAvgChange());
-		obj.setLiquidity(s1.getLiquidity());
-		obj.setVolatility(s1.getVolatility());
-		obj.setMarketList(beanMarket.getStockMarketDetails(ticker1));
-		response.add(obj);
+		AnalyzeFinalResponse obj1 = new AnalyzeFinalResponse();
+		AnalyzeFinalResponse obj2 = new AnalyzeFinalResponse();
+		obj1.setAvgChange(s1.getAvgChange());
+		obj1.setLiquidity(s1.getLiquidity());
+		obj1.setVolatility(s1.getVolatility());
+		obj1.setMarketList(beanMarket.getStockMarketDetails(ticker1));
+		System.out.println(obj1.getAvgChange()+obj1.getLiquidity()+obj1.getVolatility());
+		response.add(obj1);
 		
-		obj.setAvgChange(s2.getAvgChange());
-		obj.setLiquidity(s2.getLiquidity());
-		obj.setVolatility(s2.getVolatility());
-		obj.setMarketList(beanMarket.getStockMarketDetails(ticker2));
-		response.add(obj);
-		
+		obj2.setAvgChange(s2.getAvgChange());
+		obj2.setLiquidity(s2.getLiquidity());
+		obj2.setVolatility(s2.getVolatility());
+		System.out.println(obj2.getAvgChange()+obj2.getLiquidity()+obj2.getVolatility());
+		obj2.setMarketList(beanMarket.getStockMarketDetails(ticker2));
+		response.add(obj2);
+		System.out.println(response);
 		return response;
 		
 	}
