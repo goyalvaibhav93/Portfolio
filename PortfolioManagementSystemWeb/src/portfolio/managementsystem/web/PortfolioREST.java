@@ -53,7 +53,7 @@ private InvestmentBeanLocal bean;
 				obj.setPortfolio(i.getStock().getPortfolio().getPortfolioName());
 				double price = bean.getProfit(obj.getTicker());
 				double profit = price*(double)obj.getUnits() - obj.getInvestmentCost();
-				profits[x] += profit;
+				profits[x] += obj.getInvestmentCost();
 				profits[x+1] += profit/obj.getInvestmentCost();
 				obj.setProfit(profit);
 				response.add(obj);

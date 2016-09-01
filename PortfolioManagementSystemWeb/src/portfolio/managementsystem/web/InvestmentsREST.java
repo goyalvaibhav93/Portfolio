@@ -50,6 +50,7 @@ public class InvestmentsREST {
 			
 			double price = bean.getProfit(obj.getTicker());
 			double profit = price*(double)obj.getUnits() - obj.getInvestmentCost();
+			profit = (profit/obj.getInvestmentCost())*100;
 			obj.setProfit(profit);
 			
 			response.add(obj);
@@ -75,6 +76,7 @@ public class InvestmentsREST {
 			obj.setPortfolio(i.getStock().getPortfolio().getPortfolioName());
 			double price = bean.getProfit(obj.getTicker());
 			double profit = price*(double)obj.getUnits() - obj.getInvestmentCost();
+			profit = (profit/obj.getInvestmentCost())*100;
 			obj.setProfit(profit);
 			response.add(obj);
 		}
