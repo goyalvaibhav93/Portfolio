@@ -15,5 +15,6 @@
 	<classpathentry kind="src" path="/PortfolioManagementSystemEJBClient"/>
 	<classpathentry kind="lib" path="C:/JavaEEJBossDev/Databases/hibernate-core-4.3.9.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Grad software 2016/Java Tools/wildfly-10.0.0.Final/wildfly-10.0.0.Final/bin/client/jboss-client.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
