@@ -19,7 +19,7 @@ import portfolio.managementsystem.response.AnalyzeFinalResponse;
 import portfolio.managementsystem.response.CompareResponse;
 
 
-@Path("stocks")
+@Path("/stocks")
 public class AnalyzeREST {
 	
 	private MarketBeanLocal beanMarket;

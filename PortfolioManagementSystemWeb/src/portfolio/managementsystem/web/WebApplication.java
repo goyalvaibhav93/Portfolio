@@ -17,6 +17,7 @@ public class WebApplication  extends Application {
 		singletons.add(new InvestmentsREST());
 		singletons.add(new TransactionREST());
 		singletons.add(new AnalyzeREST());
+		singletons.add(new PortfolioREST());
 	}
 	
 	@Override
