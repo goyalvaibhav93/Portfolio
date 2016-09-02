@@ -59,6 +59,10 @@ public class TransactionBean implements TransactionBeanRemote, TransactionBeanLo
 		
     	
     	if(type==0){
+    		System.out.println("Size is "+queryInvestment.getResultList().size());
+    		if(queryInvestment.getResultList().size()==0){
+    			return "You do not hold any units of this stock";
+    		}
     		int unitsCheck = queryInvestment.getResultList().get(0).getUnits();
     		if(unitsCheck - units < 0) {
     			return "You do not have sufficient units of this stock";
